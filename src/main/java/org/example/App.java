@@ -21,6 +21,7 @@ public class App
     public Build parseBuildYaml(String gcbYaml) throws IOException {
         Object buildObj = readingYamlMapper.readValue(gcbYaml, Object.class);
         Build build = parseBuildJson(jsonMapper.writeValueAsString(buildObj));
+        // not sure why the substitutions are being cleared -- it was in the original example
         build = build.toBuilder()
             .putAllSubstitutions(new LinkedHashMap<String, String>())
             .build();
